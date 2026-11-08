@@ -12,7 +12,7 @@ import styles from "./MapApp.module.css";
 
 type Sheet = { kind: "place"; place: Place } | { kind: "updates" } | { kind: "favorites" } | { kind: "login" } | null;
 
-const LAYER_LABEL: Record<Layer, string> = { all: "전체", "2": "2회", "3plus": "3회 이상" };
+const LAYER_LABEL: Record<Layer, string> = { "3": "3개월 이상", "5": "5개월 이상", "7": "7개월 이상", "10": "10개월 이상" };
 const shortCategory = (c: string) => c.split(">").map((s) => s.trim()).filter(Boolean).slice(-1)[0] ?? c;
 const won = (n: number | null) => (n == null ? "-" : `${n.toLocaleString("ko-KR")}원`);
 
@@ -20,7 +20,7 @@ export default function MapApp() {
   const [places, setPlaces] = useState<Place[]>([]);
   const [query, setQuery] = useState("");
   const [typing, setTyping] = useState(false);
-  const [layer, setLayer] = useState<Layer>("all");
+  const [layer, setLayer] = useState<Layer>("3");
   const [layerOpen, setLayerOpen] = useState(false);
   const [sheet, setSheet] = useState<Sheet>(null);
   const [focus, setFocus] = useState<{ lat: number; lng: number; level?: number; nonce: number } | null>(null);
@@ -158,7 +158,7 @@ export default function MapApp() {
         )}
         <button className={styles.fab} aria-label="레이어" onClick={() => setLayerOpen((v) => !v)}>
           <LayersIcon />
-          {layer !== "all" && <span className={styles.fabLabel}>{LAYER_LABEL[layer]}</span>}
+          {layer !== "3" && <span className={styles.fabLabel}>{LAYER_LABEL[layer]}</span>}
         </button>
         <button className={styles.fab} aria-label="업데이트된 식당" onClick={() => setSheet({ kind: "updates" })}>
           <BellIcon />

@@ -40,9 +40,7 @@ export function suggest(places: Place[], query: string, limit = 8): Place[] {
 }
 
 export function matchesLayer(place: Place, layer: Layer): boolean {
-  if (layer === "2") return place.month_count === 2;
-  if (layer === "3plus") return place.month_count >= 3;
-  return true;
+  return place.month_count >= Number(layer);
 }
 
 /** 칩: label은 화면 표시, query는 검색창에 자동 입력되는 값 */
