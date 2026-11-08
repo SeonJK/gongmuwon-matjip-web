@@ -23,4 +23,5 @@ export type Visit = {
   purpose: string | null;
 };
 
-export type Layer = "all" | "2" | "3plus";
+/** 서로 다른 N개월 이상. 지도 노출 기준이 3개월이라 "3"이 전체. */
+export type Layer = "3" | "5" | "7" | "10";

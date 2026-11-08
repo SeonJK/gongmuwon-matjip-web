@@ -45,7 +45,7 @@ export default function MapView(props: Props) {
 }
 
 function markerImage(kakao: any, selected: boolean, months: number) {
-  const color = selected ? "#ff5a3c" : months >= 3 ? "#1f6fff" : "#4c9aff";
+  const color = selected ? "#ff5a3c" : months >= 7 ? "#1f6fff" : "#4c9aff";
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" viewBox="0 0 30 40"><path d="M15 39s13-13.4 13-23.5C28 7.5 22.2 2 15 2S2 7.5 2 15.5C2 25.6 15 39 15 39z" fill="${color}" stroke="#fff" stroke-width="2"/><circle cx="15" cy="15.5" r="5" fill="#fff"/></svg>`;
   const size = new kakao.maps.Size(30, 40);
   return new kakao.maps.MarkerImage(`data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`, size, {
