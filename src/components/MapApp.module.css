@@ -1,0 +1,487 @@
+.app {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #eef1f4;
+}
+
+.map {
+  position: absolute;
+  inset: 0;
+}
+
+/* ---------- 미리보기 지도 (카카오 키 없음) ---------- */
+.preview {
+  background:
+    linear-gradient(#dfe5ea 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(90deg, #dfe5ea 1px, transparent 1px) 0 0 / 48px 48px,
+    #f2f4f1;
+}
+.previewNote {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  font-size: 11px;
+  color: #8a9199;
+}
+.previewPin {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  border: 0;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.previewPin::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: var(--primary);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+.previewPin span {
+  font-size: 11px;
+  font-weight: 600;
+  background: #fff;
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-bottom: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+}
+.previewPinOn::after {
+  background: #ff5a3c;
+}
+
+.meDot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 6px rgba(31, 111, 255, 0.2);
+}
+
+/* ---------- 상단 검색바 + 칩 ---------- */
+.top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: max(10px, env(safe-area-inset-top)) 12px 0;
+  z-index: 20;
+  pointer-events: none;
+}
+.top > * {
+  pointer-events: auto;
+}
+.searchBar {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
+  padding: 0 4px;
+}
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  font-size: 16px;
+  background: transparent;
+  color: var(--text);
+}
+.searchInput::placeholder {
+  color: #9aa0a6;
+}
+.iconBtn {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: none;
+  color: #4a4f55;
+  cursor: pointer;
+}
+.suggest {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 4px 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
+}
+.suggest button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 0;
+  background: none;
+  text-align: left;
+  color: #9aa0a6;
+  cursor: pointer;
+}
+.suggestName {
+  color: var(--text);
+  font-size: 15px;
+}
+.suggestMeta {
+  margin-left: auto;
+  font-size: 12px;
+}
+.chips {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 8px 0 4px;
+  scrollbar-width: none;
+}
+.chips::-webkit-scrollbar {
+  display: none;
+}
+.chip {
+  flex: none;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 16px;
+  border: 0;
+  background: #fff;
+  color: #3b4046;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+}
+.chipOn {
+  background: var(--primary);
+  color: #fff;
+}
+.sampleBadge {
+  display: inline-block;
+  margin: 4px 0 0;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+
+/* ---------- 플로팅 버튼 ---------- */
+.fabs {
+  position: absolute;
+  right: 12px;
+  bottom: calc(24px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+  z-index: 15;
+  transition: bottom 0.2s ease;
+}
+.fabsRaised {
+  bottom: calc(45vh + 12px);
+}
+.fab {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  background: #fff;
+  color: #3b4046;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.fabStar {
+  color: #f5b400;
+}
+.fabLabel {
+  position: absolute;
+  right: 50px;
+  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--primary);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 8px;
+}
+.badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: #ff3b30;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 18px;
+}
+.layerMenu {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+.layerMenu button {
+  border: 0;
+  background: none;
+  padding: 10px 16px;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  color: var(--text);
+}
+.layerOn {
+  color: var(--primary) !important;
+  font-weight: 700;
+}
+
+/* ---------- 바텀시트 ---------- */
+.sheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 45vh;
+  background: #fff;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.12);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  transition: height 0.2s ease;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.sheetFull {
+  height: 88vh;
+}
+.handle {
+  width: 40px;
+  height: 5px;
+  border-radius: 3px;
+  background: #d5d8dc;
+  border: 0;
+  margin: 8px auto 4px;
+  flex: none;
+  cursor: pointer;
+}
+.sheetClose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 0;
+  background: none;
+  color: #8a9199;
+  cursor: pointer;
+}
+.sheetBody {
+  overflow-y: auto;
+  padding: 4px 20px 20px;
+}
+.placeHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-right: 24px;
+}
+.placeName {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 6px 0 2px;
+}
+.placeCat {
+  margin: 0;
+  color: #8a9199;
+  font-size: 13px;
+}
+.starBtn {
+  border: 1px solid #e3e5e8;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  color: #9aa0a6;
+  cursor: pointer;
+}
+.starOn {
+  color: #f5b400;
+}
+.stat {
+  margin: 10px 0 2px;
+  font-size: 14px;
+}
+.stat strong {
+  color: var(--primary);
+}
+.addr {
+  margin: 0;
+  font-size: 13px;
+  color: #5f6368;
+}
+.actions {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0;
+}
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 18px;
+  border: 1px solid #e3e5e8;
+  font-size: 13px;
+  color: var(--text);
+  text-decoration: none;
+}
+.subhead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  margin: 16px 0 8px;
+}
+.routeRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.routeBtn {
+  height: 40px;
+  border-radius: 8px;
+  border: 0;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.kakao {
+  background: #fee500;
+  color: #191919;
+}
+.naver {
+  background: #03c75a;
+  color: #fff;
+}
+.tmap {
+  background: #ef2c55;
+  color: #fff;
+}
+.visits {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.visits li {
+  display: grid;
+  grid-template-columns: 86px 1fr auto;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f1f2f4;
+  font-size: 13px;
+}
+.visitDate {
+  color: #8a9199;
+}
+.visitAmt {
+  font-weight: 600;
+}
+.muted {
+  color: #8a9199;
+  font-size: 13px;
+}
+.listTitle {
+  font-size: 17px;
+  margin: 6px 0 8px;
+}
+.listTitle span {
+  color: var(--primary);
+}
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.list button {
+  width: 100%;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid #f1f2f4;
+  background: none;
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  cursor: pointer;
+}
+.listName {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+.listMeta {
+  font-size: 12px;
+  color: #8a9199;
+}
+.login {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.loginBtn {
+  height: 48px;
+  border: 0;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.loginKakao {
+  background: #fee500;
+  color: #191919;
+}
+.loginNaver {
+  background: #03c75a;
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .top {
+    width: 400px;
+  }
+  .sheet {
+    left: 12px;
+    right: auto;
+    width: 400px;
+    bottom: 12px;
+    border-radius: 16px;
+    height: calc(100vh - 140px);
+    top: 128px;
+  }
+  .sheetFull {
+    height: calc(100vh - 140px);
+  }
+  .fabsRaised {
+    bottom: calc(24px + env(safe-area-inset-bottom));
+  }
+}
